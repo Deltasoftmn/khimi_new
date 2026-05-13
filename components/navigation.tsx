@@ -59,7 +59,7 @@ export function Navigation() {
 
   return (
     <nav className="fixed top-4 left-0 right-0 z-50 w-full ">
-      <div className="max-w-[1700px] mx-auto">
+      <div className="max-w-full mx-auto">
         <div className="relative flex items-center justify-between -top-5 h-25 px-20 bg-[url('/header_background.png')] bg-cover bg-center bg-no-repeat rounded-[2rem] shadow-inner">
           {/* Logo and Tagline Area */}
           <div className="flex items-center gap-6 z-10">
