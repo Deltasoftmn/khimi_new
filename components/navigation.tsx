@@ -17,23 +17,43 @@ export function Navigation() {
       name: "Үйлчилгээ", 
       href: "/services",
       submenu: [
-        { name: "Үйлдвэрлэлийн процессийн судалгаа", href: "/services/research" },
-        { name: "Техникийн зөвлөгөө, шийдэл", href: "/services/consulting" },
-        { name: "Аюулгүй ажиллагааны сургалт", href: "/services/training" }
+        { name: "Химийн бодисын худалдаа ", href: "/services/1" },
+        { name: "Химийн бодисын аюулгүй хэрэглээ, хадгалалт, агуулахын менежментийн зөвлөгөө", href: "/services/2" },
       ] 
     },
     { 
       name: "Бүтээгдэхүүн", 
       href: "/products",
       submenu: [
-        { name: "Уул уурхайн реагент", href: "/products/reagents" },
-        { name: "Зам, барилгын материал", href: "/products/construction" },
-        { name: "Тоног төхөөрөмж", href: "/products/equipment" }
+        { name: "Уул уурхайн флотацийн реагентууд", href: "/products/1" },
+        { name: "Уул уурхайн химийн бодис", href: "/products/2" },
+        { name: "Тоног төхөөрөмж", href: "/products/3" },
+        { name: "Аюулгүй ажиллагааны хэрэгсэл", href: "/products/4" }
       ]
     },
-    { name: "Харилцагчид", href: "/clients" },
-    { name: "Мэдээ, нийтлэл", href: "/news" },
-    { name: "Ажлын байр", href: "/jobs" },
+    { name: "Харилцагчид", 
+      href: "/clients" ,
+      submenu: [
+        { name: "Уул уурхайн компаниуд", href: "/clients/1" },
+        { name: "Боловсруулах үйлдвэрүүд", href: "/clients/2" }
+      ]
+    },
+    { name: "Мэдээ, нийтлэл", 
+      href: "/news",
+      submenu: [
+        { name: "Аж үйлдвэрийн салбарын мэдээлэл", href: "/news/1" },
+        { name: "Байгаль орчны болон аюулгүй ажиллагааны мэдээ", href: "/news/2" },
+        { name: "Компанийн үйл ажиллагаа", href: "/news/3" },
+        
+      ]
+     },
+    { name: "Ажлын байр", href: "/jobs",
+      submenu: [
+        { name: "Нээлттэй ажлын байр", href: "/jobs/1" },
+        { name: "Хүний нөөцийн бодлого", href: "/jobs/2" }
+        
+      ]
+     },
     { name: "Холбоо барих", href: "/contact" },
   ];
 
