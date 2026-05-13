@@ -27,15 +27,14 @@ export function Footer() {
         {/* Top Centered Text */}
         <div className="text-right max-w-3xl mx-auto mb-20">
           <p className="text-xl md:text-[30px] font-medium leading-relaxed">
-            Partner with us to improve efficiency, safety,<br className="hidden md:block" />
-            and performance across your operations.
+            Бид уул уурхайн үйлдвэрлэлийн тасралтгүй, аюулгүй ажиллагааг хангах зорилгоор чанартай бүтээгдэхүүн, найдвартай түншлэлээр үнэ цэнийг бүтээнэ.
           </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8 items-start">
           {/* Contact Us */}
           <div className="lg:col-span-4">
-            <h3 className="text-[30px] mb-6">Contact Us</h3>
+            <h3 className="text-[30px] mb-6">Холбоо барих</h3>
             <ul className="space-y-4 mb-8">
               <li className="flex items-center gap-3">
                 <div className="w-6 h-6 rounded-full border border-white flex items-center justify-center flex-shrink-0">
@@ -66,15 +65,15 @@ export function Footer() {
 
           {/* Principal Office */}
           <div className="lg:col-span-5">
-            <h3 className="text-[30px] mb-6">Principal Office</h3>
+            <h3 className="text-[30px] mb-6">Төв оффис</h3>
             <div className="flex items-start gap-3">
               <div className="w-6 h-6 rounded-full border border-white flex items-center justify-center flex-shrink-0 mt-0.5">
                 <MapPin className="w-3.5 h-3.5 text-white" />
               </div>
               <p className="text-slate-100 text-sm leading-relaxed">
-                Sky Plaza Bussiness Center, Section D, 1st Floor,<br />
-                9 Embassy Street, 13th Microdistrict, 1st Khoroo,<br />
-                Sukhbaatar District, Ulaanbaatar 14220, Mongolia
+                Монгол улс, Улаанбаатар хот 14220, Сүхбаатар дүүрэг, 1-р хороо,<br />
+                13-р хороолол, Элчингийн гудамж 9,<br />
+                Sky Plaza бизнес төв, D хэсэг, 1 давхар
               </p>
             </div>
           </div>
@@ -82,7 +81,7 @@ export function Footer() {
           {/* Copyright */}
           <div className="lg:col-span-3 flex lg:items-end lg:justify-end h-full">
             <p className="text-xs text-slate-200 lg:mb-2">
-              © 2026 Khimi Consulting LLC. All rights reserved.
+              © 2026 Хими Консалтинг ХХК. Бүх эрх хуулиар хамгаалагдсан.
             </p>
           </div>
         </div>

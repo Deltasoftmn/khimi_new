@@ -12,17 +12,35 @@ export function Navigation() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const navItems = [
-    { name: "About", href: "/about" },
-    { name: "Introduction", href: "/" },
-    { name: "Advantages", href: "/advantages" },
-    { name: "Equipment & Products", href: "/products" },
-    { name: "Company History", href: "/history" },
+    { name: "Бидний тухай", href: "/about" },
+    { 
+      name: "Үйлчилгээ", 
+      href: "/services",
+      submenu: [
+        { name: "Үйлдвэрлэлийн процессийн судалгаа", href: "/services/research" },
+        { name: "Техникийн зөвлөгөө, шийдэл", href: "/services/consulting" },
+        { name: "Аюулгүй ажиллагааны сургалт", href: "/services/training" }
+      ] 
+    },
+    { 
+      name: "Бүтээгдэхүүн", 
+      href: "/products",
+      submenu: [
+        { name: "Уул уурхайн реагент", href: "/products/reagents" },
+        { name: "Зам, барилгын материал", href: "/products/construction" },
+        { name: "Тоног төхөөрөмж", href: "/products/equipment" }
+      ]
+    },
+    { name: "Харилцагчид", href: "/clients" },
+    { name: "Мэдээ, нийтлэл", href: "/news" },
+    { name: "Ажлын байр", href: "/jobs" },
+    { name: "Холбоо барих", href: "/contact" },
   ];
 
   return (
     <nav className="fixed top-4 left-0 right-0 z-50 w-full ">
-      <div className="max-w-[1600px] mx-auto">
-        <div className="relative flex items-center justify-between -top-5 h-25 px-20 bg-[url('/header_background.png')] bg-cover bg-center bg-no-repeat rounded-[2rem] shadow-inner overflow-hidden">
+      <div className="max-w-[1700px] mx-auto">
+        <div className="relative flex items-center justify-between -top-5 h-25 px-20 bg-[url('/header_background.png')] bg-cover bg-center bg-no-repeat rounded-[2rem] shadow-inner">
           {/* Logo and Tagline Area */}
           <div className="flex items-center gap-6 z-10">
             <Link href="/" className="z-10 pl-6">
@@ -31,9 +49,8 @@ export function Navigation() {
             
             <div className="hidden md:block pl-12 z-10">
               <p className="text-white/90 text-sm font-medium leading-tight max-w-[300px]">
-                Reliable Chemical Solutions
-                <br />
-                for Mining & Industry in Mongolia
+                Монголын уул уурхай, аж үйлдвэрийн салбар дахь 
+                найдвартай химийн шийдлүүд
               </p>
             </div>
           </div>
@@ -42,13 +59,48 @@ export function Navigation() {
           <div className="hidden lg:flex items-center gap-2 z-10">
             <div className="flex items-center gap-1 bg-black/20 backdrop-blur-md rounded-full p-1 border border-white/10">
               {navItems.map((item) => {
-                const isActive = pathname === item.href;
+                const isActive = pathname === item.href || (item.submenu && item.submenu.some(sub => pathname === sub.href));
+                
+                if (item.submenu) {
+                  return (
+                    <div key={item.name} className="relative group">
+                      <button
+                        className={cn(
+                          "px-4 py-1.5 rounded-full text-sm font-medium transition-all flex items-center gap-1 whitespace-nowrap",
+                          isActive
+                            ? "bg-[#2ecc71] text-white shadow-md border border-[#27ae60]"
+                            : "text-zinc-200 hover:text-white border border-transparent hover:border-white/20"
+                        )}
+                      >
+                        {item.name}
+                        <svg className="w-3.5 h-3.5 transition-transform group-hover:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                        </svg>
+                      </button>
+                      {/* Absolute Dropdown */}
+                      <div className="absolute left-1/2 -translate-x-1/2 pt-3 w-64 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                        <div className="bg-slate-950/95 border border-white/10 rounded-2xl p-2 shadow-2xl backdrop-blur-xl">
+                          {item.submenu.map((sub) => (
+                            <Link
+                              key={sub.name}
+                              href={sub.href}
+                              className="block px-4 py-2.5 text-sm text-zinc-300 hover:text-white hover:bg-emerald-600/20 hover:border-emerald-500/30 border border-transparent rounded-xl transition-all mb-1 last:mb-0"
+                            >
+                              {sub.name}
+                            </Link>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  );
+                }
+
                 return (
                   <Link
                     key={item.name}
                     href={item.href}
                     className={cn(
-                      "px-4 py-1.5 rounded-full text-sm font-medium transition-all",
+                      "px-4 py-1.5 rounded-full text-sm font-medium transition-all whitespace-nowrap",
                       isActive
                         ? "bg-[#2ecc71] text-white shadow-md border border-[#27ae60]"
                         : "text-zinc-200 hover:text-white border border-transparent hover:border-white/20"
@@ -63,7 +115,7 @@ export function Navigation() {
             {/* Language Switcher */}
             <button className="ml-2 px-3 py-1.5 rounded-full bg-[#1b5e20] text-white font-medium hover:bg-[#2e7d32] transition-colors flex items-center gap-1.5 shadow-md border border-[#4caf50]">
               <Globe className="w-4 h-4 text-[#81c784]" />
-              <span className="text-sm">EN/MN</span>
+              <span className="text-sm">МН/EN</span>
             </button>
           </div>
 
@@ -78,6 +130,60 @@ export function Navigation() {
           </div>
         </div>
       </div>
+
+      {/* Mobile Menu */}
+      {mobileMenuOpen && (
+        <div className="lg:hidden max-w-[1680px] mx-auto px-4 mt-3 animate-in fade-in slide-in-from-top-4 duration-200 ease-out relative z-40">
+          <div className="bg-slate-950/95 backdrop-blur-xl border border-white/10 rounded-[2rem] p-6 shadow-2xl">
+            <div className="flex flex-col gap-3">
+              {navItems.map((item) => (
+                <div key={item.name} className="border-b border-white/5 last:border-none pb-2 last:pb-0">
+                  {item.submenu ? (
+                    <div>
+                      <span className="block font-semibold text-[#2ecc71] px-4 py-1.5 text-sm">
+                        {item.name}
+                      </span>
+                      <div className="flex flex-col gap-1 pl-4 mt-1 border-l-2 border-emerald-500/20 ml-4 mb-2">
+                        {item.submenu.map((sub) => (
+                          <Link
+                            key={sub.name}
+                            href={sub.href}
+                            onClick={() => setMobileMenuOpen(false)}
+                            className="block px-4 py-2 text-sm text-zinc-400 hover:text-white hover:bg-emerald-500/10 rounded-lg transition-all"
+                          >
+                            {sub.name}
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+                  ) : (
+                    <Link
+                      href={item.href}
+                      onClick={() => setMobileMenuOpen(false)}
+                      className={cn(
+                        "block px-4 py-2.5 font-medium rounded-xl text-sm transition-all",
+                        pathname === item.href
+                          ? "bg-[#2ecc71] text-white"
+                          : "text-zinc-300 hover:text-white hover:bg-white/5"
+                      )}
+                    >
+                      {item.name}
+                    </Link>
+                  )}
+                </div>
+              ))}
+              
+              {/* Mobile Language Switcher */}
+              <div className="pt-3 border-t border-white/10 mt-2">
+                <button className="w-full flex items-center justify-center gap-2 py-3 px-4 rounded-2xl bg-[#1b5e20] text-white font-semibold shadow-lg">
+                  <Globe className="w-4 h-4 text-[#81c784]" />
+                  <span>МН/EN</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </nav>
   );
 }
